@@ -60,3 +60,41 @@ Snam Rete Gas, **Dati Operativi 2023**: hourly publications of the gas balance o
 `src/data.py` turns 8,768 hourly publications into a clean daily table (365 gas days), handling the gas-day convention and re-published hours.
 
 ## Repository structure
+
+```
+├── data/
+│   ├── raw/DatiOperativi_2023-IT.xlsx   # original Snam report
+│   └── processed/daily_2023.csv         # clean daily dataset
+├── notebooks/
+│   ├── 01_eda.ipynb                     # exploratory analysis
+│   └── 02_forecasting.ipynb             # features, backtest, results
+├── src/
+│   ├── data.py                          # parsing and daily dataset
+│   ├── model.py                         # features, models, walk-forward backtest
+│   └── plots.py                         # figure style
+├── images/
+└── requirements.txt
+```
+
+## How to run
+
+```bash
+git clone https://github.com/elisapresciutti/gas-demand-forecasting.git
+cd gas-demand-forecasting
+pip install -r requirements.txt
+python src/data.py          # rebuild the daily dataset
+jupyter notebook notebooks/
+```
+
+## Tech stack
+
+Python · pandas · NumPy · scikit-learn · Matplotlib · Jupyter
+
+## Limitations and next steps
+
+- Only one year of data: rare events (August shutdown, Christmas week) are seen once at most
+- Next: add Snam's 2017–2022 reports, model the distribution and industrial components separately, add prediction intervals
+
+---
+
+*Personal project built on public Snam data. Author: Elisa Presciutti · [LinkedIn](https://www.linkedin.com/in/elisapresciutti)*
